@@ -74,8 +74,8 @@ val remove_system_attribute : ?recurse:bool -> string -> t
 
 val header :
   alias:string ->
-  ?win10_revision:Distro.win10_lcu ->
-  ?version:Distro.win_all ->
+  ?win10_revision:Opam_distro.Basic.win10_lcu ->
+  ?version:Opam_distro.Basic.win_all ->
   unit ->
   t
 (** A Dockerfile header for multi-staged builds. *)
@@ -159,7 +159,7 @@ end
 (** Rules for winget installation.
     @see <https://docs.microsoft.com/en-us/windows/package-manager/winget> *)
 module Winget : sig
-  val is_supported : Distro.win_all -> bool
+  val is_supported : Opam_distro.Basic.win_all -> bool
   (** Winget 1.0.11692 discontinued support for versions older than
      Windows 10 1809. Older versions of Winget have bugs, don't use
      them. *)
@@ -175,7 +175,8 @@ module Winget : sig
   val install : string list -> t
   (** [install packages] will install the supplied winget package list. *)
 
-  val dev_packages : ?version:Distro.win_all -> ?extra:string list -> unit -> t
+  val dev_packages :
+    ?version:Opam_distro.Basic.win_all -> ?extra:string list -> unit -> t
   (** [dev_packages ?version ?extra ()] will install the base development
       tools. Extra packages may also be optionally supplied via [extra].
       Using [?version] may change the set of installed packages. *)

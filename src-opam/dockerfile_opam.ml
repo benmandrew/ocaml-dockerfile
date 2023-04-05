@@ -22,7 +22,7 @@
     there change, so please contact [anil@recoil.org] if you depend on these
     functions for your own infrastructure. *)
 
-module Distro = Distro
+module Distro = Opam_distro.Basic
 module Linux = Linux
 module Windows = Windows
 include Opam

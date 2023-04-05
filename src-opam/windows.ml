@@ -17,6 +17,7 @@
 
 open Dockerfile
 open Printf
+module D = Opam_distro.Basic
 
 let run_cmd fmt = ksprintf (run "cmd /S /C %s") fmt
 
@@ -79,9 +80,8 @@ let install_visual_studio_build_tools ?(vs_version = "16") components =
   @@ install
 
 let header ~alias ?win10_revision
-    ?(version =
-      (Distro.win10_latest_image : Distro.win10_release :> Distro.win_all)) () =
-  let img, tag = Distro.win10_base_tag ?win10_revision `Windows version in
+    ?(version = D.((win10_latest_image : win10_release :> win_all))) () =
+  let img, tag = D.win10_base_tag ?win10_revision `Windows version in
   parser_directive (`Escape '`')
   @@ from ~alias ~tag img
   @@ user "ContainerAdministrator"

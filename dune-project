@@ -87,7 +87,8 @@
   (fmt (>= "0.8.7"))
   (ocaml-version (>= "3.5.0"))
   (ppx_sexp_conv (>= "v0.9.0"))
-  sexplib)
+  sexplib
+  opam-distro)
  (conflicts
   (result (< 1.5))
   (rresult (< 0.7.0)))
